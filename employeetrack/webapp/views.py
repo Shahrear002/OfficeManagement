@@ -10,7 +10,7 @@ from django.contrib import messages
 def index(request):
     return render(request, 'personal/firstpage.html')
 
-def signup(request):
+def signup_view(request):
     if request.method == 'POST':
         form = signupform(request.POST)
         if form.is_valid():
