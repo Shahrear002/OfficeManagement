@@ -1,6 +1,6 @@
 {% load staticfiles %}
 <head>
-	<title>DoctorNearMe</title>
+	<title>EmployeeTracker</title>
 	<style type="text/css">
 		body {
 			background-color: #f6f6f6;
@@ -41,7 +41,7 @@
 </head>
 {% block content %}
 <body>
-	<h1>Login to DoctorNearMe</h1>
+	<h1>Login to EmployeeTracker</h1>
 	{% if messages %}
 	<div class="span12" style="color: red; font-size: 130%">
 	{% for message in messages %}
@@ -60,8 +60,8 @@
 		<input type="submit" value="Login" />
 	</form>
 	<div class="container-fluid" style='margin-left:15px'>
-		<p>Don't have an account ? <a href="/signupp/"> Sign Up </a> | <a href="/"> Home </a>
-		</p> 
+		<p>Don't have an account ? <a href="/signup/"> Sign Up </a> | <a href="/"> Home </a>
+		</p>
 	</div>
 </body>
 {% endblock %}

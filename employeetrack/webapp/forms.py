@@ -5,14 +5,16 @@ from django.forms import ModelForm
 class signupform(forms.Form):
 	name = forms.CharField(required=True)
 	username = forms.CharField(required=True)
+	email = forms.EmailField(required=True)
 	password = forms.CharField(required=True, widget=forms.PasswordInput)
 
 	def clean(self):
 		cleaned_data = super(signupform, self).clean()
 		name = cleaned_data.get('name')
+		email = cleaned_data.get('email')
 		username = cleaned_data.get('username')
 		password = cleaned_data.get('password')
-		if not name and not username and not password and not address and not contactnumber:
+		if not name and not email and not username and not password:
 			raise forms.ValidationError('You have to write something')
 
 class loginform(forms.Form):

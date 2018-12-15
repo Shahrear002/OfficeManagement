@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponseRedirect
 from django.http import HttpResponse
 from .forms import signupform, loginform
 from webapp.models import employee_info
@@ -9,17 +9,18 @@ from django.contrib import messages
 
 def index(request):
     return render(request, 'personal/firstpage.html')
-"""
+
 def signup(request):
     if request.method == 'POST':
         form = signupform(request.POST)
         if form.is_valid():
             name = request.POST.get('name','')
             username = request.POST.get('username','')
+            email = request.POST.get('email', '')
             password = request.POST.get('password','')
             user = User.objects.create_user(username=form.cleaned_data['username'],
 			password=form.cleaned_data['password']) #creates user
-            spo = patient_info(name = name, username = username, password = password, address = address, contactnumber = contactnumber)
+            spo = employee_info(name = name, username = username, email = email, password = password)
             spo.save() # save data into database
 
             return HttpResponseRedirect('/login/')
@@ -27,11 +28,10 @@ def signup(request):
         form = signupform()
 
     return render(request, 'personal/signupform.html', {'form': form})
-"""
 
-def login(request):
-	'''logout(request)
-	form = loginf()
+def login_user(request):
+	#logout(request)
+	form = loginform()
 	username = password = ''
 	if request.POST:   #form.save()
 		username = request.POST['username']
@@ -40,10 +40,19 @@ def login(request):
 		if user is not None:
 			if user.is_active:
 				login(request, user)
-				return HttpResponseRedirect('/userhome/')
+				return HttpResponseRedirect('/webapp/userhome')
 		else:
 			messages.error(request,"Invalid username or password, please try again.")
 	else:
-		form = loginf()'''
+		form = loginform()
 
-	return render(request, 'personal/login.html')
+	return render(request, 'personal/login.html', {'form': form})
+
+@login_required(login_url='/login/')
+def userhome(request):
+    data = employee_info.objects.all()
+    return render(request, 'personal/userhome.html', {'data': data})
+
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect('/webapp/login')
