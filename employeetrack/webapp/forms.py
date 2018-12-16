@@ -27,3 +27,14 @@ class loginform(forms.Form):
 		password = cleaned_data.get('password')
 		if not username and not password:
 			raise forms.ValidationError('You have to write something')
+
+class mealform(forms.Form):
+	cost = forms.IntegerField(required=True)
+	description = forms.CharField(required=True)
+
+	def clean(self):
+		cleaned_data = super(mealform, self).clean()
+		cost = cleaned_data.get('cost')
+		description = cleaned_data.get('description')
+		if not cost and not description:
+			raise forms.ValidationError('Cost and description field can not be left blank')

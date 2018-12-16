@@ -1,0 +1,67 @@
+{% load staticfiles %}
+<head>
+	<title>EmployeeTracker</title>
+	<style type="text/css">
+		body {
+			background-color: #f6f6f6;
+		}
+		input[type=submit]{
+			width: 50%;
+    		background-color: #4CAF50;
+    		color: white;
+    		padding: 14px 20px;
+    		margin: 8px 0;
+    		border: none;
+    		border-radius: 4px;
+    		cursor: pointer;
+    		border-radius: 10px;
+    		font-size: 20px;
+    		top: 50%;
+    		left: 50%;
+		}
+		input[type=text], input[type=password], input[type=email], input[type=number] {
+    		width: 50%;
+    		padding: 12px 20px;
+    		margin: 8px 0;
+    		display: inline-block;
+    		border: 1px solid #ccc;
+    		border-radius: 4px;
+    		box-sizing: border-box;
+    		top: 50%;
+    		left: 50%;
+		}
+		h1 {
+			color: black;
+			font-size: 250%;
+			padding-left: 450px;
+		}
+		form{
+			padding-left: 450px;
+		}
+
+
+	</style>
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %} " type="text/css"/>
+</head>
+
+<body>
+	<h1>Signup to EmployeeTracker</h1>
+	<form action="." method='POST'>
+		{% csrf_token %}
+		{% for field in form %}
+		{{ field.label }}<br> {{ field }} <br>
+		{% endfor %}
+		<!--<button type="submit">Submit</button>-->
+		<input type="submit" value="Submit" />
+	</form>
+	<div class="container-fluid" style='margin-left:15px; padding-left: 450px;'>
+		<p>Already have an account ? <a href='/webapp/login/'> Log In </a> | <a href='/webapp/'> Home </a>
+		</p>
+	</div>
+<footer>
+	<div class="container-fluid" style='margin-left:15px'>
+		<p>Developed By Shahrear Rahman</p>
+	</div>
+</footer>
+
+</body>

@@ -45,6 +45,7 @@
 				<p style="color: black; font-size: 15px">Welcome, {{ user.username }}</p>
 				<li><a href='#'>Home</a></li>
 				<li><a href='#'>Profile</a></li>
+				<li><a href='/webapp/meal/'>Meal</a></li>
 				<li><a href='/webapp/logout/'>Logout</a></li>
 			  </ul>
 			</div> <!--well bs-sidebar affix-->
@@ -58,9 +59,10 @@
 
 			   		<div style="background-color: white;color:black;padding:25px;
 			   		width:350px;display: inline-grid; font-size: 18px">
-			   			Name: {{ d.name }}<br>
 			   			Username: {{ d.username }}<br>
-			   			Email: {{ d.email }}<br>
+						Cost: {{ d.cost }}<br>
+			   			Description: {{ d.description }}<br>
+						Date: {{ d.dtime }}<br>
 			   		</div>
 
 			   		{% endfor %}
